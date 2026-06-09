@@ -1,0 +1,44 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/java
+{
+  "name": "Java Spring Boot - Full Stack Augmented",
+  // Use a Java 21 dev container image with Maven preinstalled.
+  "image": "mcr.microsoft.com/devcontainers/java:1-21-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",
+      "installMaven": "true",
+      "installGradle": "false"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    }
+  },
+  // Make the app use the local profile by default inside the container.
+  "containerEnv": {
+    "SPRING_PROFILES_ACTIVE": "local"
+  },
+  // Expose the web port used by Spring Boot.
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": {
+      "label": "Spring Boot API",
+      "onAutoForward": "openPreview"
+    }
+  },
+  // Pre-download Maven dependencies and prepare the project for first run.
+  "postCreateCommand": "mvn -q -DskipTests dependency:go-offline",
+  // Show a short startup hint after the container is attached.
+  "postStartCommand": "echo 'Run: mvn spring-boot:run' && echo 'Open: http://localhost:8080/swagger-ui.html'",
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-maven",
+        "vmware.vscode-spring-boot",
+        "streetsidesoftware.code-spell-checker"
+      ]
+    }
+  }
+}
