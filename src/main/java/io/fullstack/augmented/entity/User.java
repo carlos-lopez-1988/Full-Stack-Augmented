@@ -1,5 +1,6 @@
 package io.fullstack.augmented.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,6 +24,7 @@ public class User {
     private String email;
 
     @Column(name = "created_at", nullable = false, updatable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private OffsetDateTime createdAt;
 
     public User() {
